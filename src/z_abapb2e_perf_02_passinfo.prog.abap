@@ -24,7 +24,7 @@ data :
           numflights        type i,
       end of lt_passenger_total,
       l_multiplier  type p decimals 2.
-field-symbols : <pp> like lt_passenger_price.
+
 select-options :
  s_first for flightb-firstname,
  s_last  for flightb-lastname,
@@ -47,8 +47,8 @@ select
         lastname  in s_last  and
         dat       in s_dat.
 *--Calculate the discounted price
-loop at   lt_passenger_price assigning <pp>.
-  case <pp>-discout.
+loop at   lt_passenger_price.
+  case lt_passenger_price-discout.
     when '10%'.
         l_multiplier = '0.90'.
     when '25%'.
@@ -58,8 +58,8 @@ loop at   lt_passenger_price assigning <pp>.
     when '100%'.
         l_multiplier = '0.00'.
   endcase.
-  <pp>-discounted_price = <pp>-base_price * l_multiplier.
-*  modify   lt_passenger_price.
+  lt_passenger_price-discounted_price = lt_passenger_price-base_price * l_multiplier.
+  modify   lt_passenger_price.
 endloop.
 *--Calculate passenger totals
 loop at lt_passenger_price.
