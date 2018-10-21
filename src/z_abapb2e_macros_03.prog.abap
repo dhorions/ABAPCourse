@@ -11,14 +11,14 @@ data : go_rnd       TYPE REF TO cl_abap_random,
        l_end        type dats,
        l_rnd_date   type dats.
 *--Initialize the pseudo-random number generator class
-define init_rnd.
+define _init_rnd.
     if go_rnd is initial.
       go_rnd = cl_abap_random=>create( ).
     endif.
 end-of-definition.
 *--get a random date between two dates
-DEFINE random_date.
-  init_rnd. "initialize random nr object if not done yet
+DEFINE _random_date.
+  _init_rnd. "initialize random nr object if not done yet
 *--Check how many days between the two provided dates
   if &1 > &2.
      g_macro_days = &1 - &2.
@@ -41,7 +41,7 @@ END-OF-DEFINITION.
 l_start = '20180101'.
 l_end   = '20181231'.
 do 10 times.
-  random_date l_start l_end l_rnd_date.
+  _random_date l_start l_end l_rnd_date.
   write : / l_rnd_date.
 enddo.
 
@@ -68,6 +68,5 @@ do 10 times.
   else.
      l_rnd_date = l_start + g_macro_days.
   endif.
-  random_date l_start l_end l_rnd_date.
   write : / l_rnd_date.
 enddo.

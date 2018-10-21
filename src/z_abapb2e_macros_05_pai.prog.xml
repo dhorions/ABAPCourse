@@ -3,19 +3,18 @@
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
    <PROGDIR>
-    <NAME>Z_ABAPB2E_MACROS_02</NAME>
+    <NAME>Z_ABAPB2E_MACROS_05_PAI</NAME>
     <STATE>A</STATE>
     <VARCL>X</VARCL>
-    <SUBC>1</SUBC>
+    <SUBC>I</SUBC>
     <RLOAD>E</RLOAD>
-    <FIXPT>X</FIXPT>
     <UCCHECK>X</UCCHECK>
    </PROGDIR>
    <TPOOL>
     <item>
      <ID>R</ID>
-     <ENTRY>Macros - Scope</ENTRY>
-     <LENGTH>14</LENGTH>
+     <ENTRY>Include Z_ABAPB2E_MACROS_05_PAI</ENTRY>
+     <LENGTH>31</LENGTH>
     </item>
    </TPOOL>
   </asx:values>

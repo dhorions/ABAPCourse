@@ -12,7 +12,7 @@ data :l_index like sy-index.
 *--A macro inherits the scope of the location where it is called from
 *--If you call a macro from a location where the variable is not in scope
 *--The code will not compile
-define m_multiply.
+define _multiply.
    l_result = &1 * &2.
 end-of-definition.
 
@@ -30,7 +30,7 @@ form multiplication_table using i_factor type i.
          l_index like sy-index.
   do 10 timeS.
     l_index = sy-index.
-    m_multiply l_index i_factor.
+    _multiply l_index i_factor.
     write : / l_index, 'X', i_factor , '=', l_result.
   enddo.
 endform.
