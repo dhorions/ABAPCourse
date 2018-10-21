@@ -35,34 +35,34 @@ START-OF-SELECTION.
     ADD 1 TO l_id.
     lt_flightm-id      = l_id.
     lt_flightm-curr = 'EUR'.
-    rnd_city lt_flightm-dcity.
-    rnd_city lt_flightm-acity.
+    _rnd_city lt_flightm-dcity.
+    _rnd_city lt_flightm-acity.
     if lt_flightm-acity = lt_flightm-dcity.
-        rnd_city lt_flightm-dcity.
+        _rnd_city lt_flightm-dcity.
     endif.
-    rnd_time lt_flightm-dtime.
-    rnd_num lt_flightm-cap 100 250.
-    rnd_flag lt_flightm-line.
+    _rnd_time lt_flightm-dtime.
+    _rnd_num lt_flightm-cap 100 250.
+    _rnd_flag lt_flightm-line.
     IF lt_flightm-line = 'X'.
       lt_flightm-charter = ''.
     ELSE.
       lt_flightm-charter = 'X'.
     ENDIF.
-    rnd_num lt_flightm-price 100 lt_flightm-cap.
+    _rnd_num lt_flightm-price 100 lt_flightm-cap.
     APPEND lt_flightm.
     DO ndays TIMES.
 *  --Attendants
       lt_flights-id         =  lt_flightm-id.
-      rnd_date lt_flights-dat.
-      rnd_person lt_flights-pilot.
-      rnd_person lt_flights-copilot.
-      rnd_person lt_flights-attend1.
-      rnd_person lt_flights-attend2.
-      rnd_person lt_flights-attend3.
-      rnd_person lt_flights-attend4.
+      _rnd_date lt_flights-dat.
+      _rnd_person lt_flights-pilot.
+      _rnd_person lt_flights-copilot.
+      _rnd_person lt_flights-attend1.
+      _rnd_person lt_flights-attend2.
+      _rnd_person lt_flights-attend3.
+      _rnd_person lt_flights-attend4.
       APPEND    lt_flights.
 *  --Ooccupancy
-      rnd_num lt_flightp-booking 0 lt_flightm-cap.
+      _rnd_num lt_flightp-booking 0 lt_flightm-cap.
       lt_flightp-id       =  lt_flightm-id.
       lt_flightp-dat      =  lt_flights-dat.
       APPEND   lt_flightp.
@@ -71,20 +71,20 @@ START-OF-SELECTION.
       lt_flightb-dat     =  lt_flights-dat.
       DO lt_flightp-booking TIMES.
         lt_flightb-seatno = sy-index.
-        rnd_person lt_flightb-firstname.
-        rnd_lname lt_flightb-lastname.
-        rnd_flag lt_flightb-fl_smoker.
+        _rnd_person lt_flightb-firstname.
+        _rnd_lname lt_flightb-lastname.
+        _rnd_flag lt_flightb-fl_smoker.
         CLEAR : lt_flightb-classf, lt_flightb-classf,lt_flightb-classe.
-        rnd_flag lt_flightb-classf.
+        _rnd_flag lt_flightb-classf.
         IF lt_flightb-classf = ''.
-          rnd_flag lt_flightb-classb.
+          _rnd_flag lt_flightb-classb.
           IF lt_flightb-classb = ''.
-            rnd_flag lt_flightb-classe.
+            _rnd_flag lt_flightb-classe.
           ENDIF.
         ENDIF.
-        rnd_flag lt_flightb-meal.
-        rnd_flag lt_flightb-service.
-        rnd_discount lt_flightb-discout.
+        _rnd_flag lt_flightb-meal.
+        _rnd_flag lt_flightb-service.
+        _rnd_discount lt_flightb-discout.
         APPEND lt_flightb.
       ENDDO.
     ENDDO.

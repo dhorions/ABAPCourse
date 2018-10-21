@@ -6,13 +6,13 @@ Data : go_rnd     TYPE REF TO cl_abap_random,
 *--A few macro's to get semi-random data
 *  This is good enough data for our purposes
 * ( don't complain if we have a flight from Paris to Paris for 500€ where all the crew has the same name)
-define init_rnd.
+define _init_rnd.
     if go_rnd is initial.
       go_rnd = cl_abap_random=>create( ).
     endif.
 end-of-definition.
-DEFINE rnd_city.
-  init_rnd.
+DEFINE _rnd_city.
+  _init_rnd.
   g_rnd_int = go_rnd->intinrange( low = 0 high = 14 ).
   CASE g_rnd_int.
     WHEN 0.
@@ -49,7 +49,7 @@ DEFINE rnd_city.
 
   ENDCASE.
 END-OF-DEFINITION.
-DEFINE rnd_person.
+DEFINE _rnd_person.
   g_rnd_int = go_rnd->intinrange( low = 0 high = 11 ).
   CASE g_rnd_int.
     WHEN 0.
@@ -79,7 +79,7 @@ DEFINE rnd_person.
 
   ENDCASE.
 END-OF-DEFINITION.
-DEFINE rnd_lname.
+DEFINE _rnd_lname.
   g_rnd_int = go_rnd->intinrange( low = 0 high = 11 ).
   CASE g_rnd_int.
     WHEN 0.
@@ -109,7 +109,7 @@ DEFINE rnd_lname.
 
   ENDCASE.
 END-OF-DEFINITION.
-DEFINE rnd_discount.
+DEFINE _rnd_discount.
   g_rnd_int = go_rnd->intinrange( low = 1 high = 4 ).
   CASE g_rnd_int.
     WHEN 1.
@@ -122,18 +122,18 @@ DEFINE rnd_discount.
         &1 = '100%'.
   ENDCASE.
 END-OF-DEFINITION.
-DEFINE rnd_date.
+DEFINE _rnd_date.
   g_rnd_int = go_rnd->intinrange( low = 0 high = 100 ).
   &1 = sy-datum.
   ADD g_rnd_int TO &1.
 END-OF-DEFINITION.
-DEFINE rnd_time.
+DEFINE _rnd_time.
   g_rnd_int = go_rnd->intinrange( low = 0 high = 86400 ).
   &1 = '000000'.
   ADD g_rnd_int TO &1 .
 END-OF-DEFINITION.
 
-DEFINE rnd_flag.
+DEFINE _rnd_flag.
   g_rnd_int = go_rnd->intinrange( low = 0 high = 1 ).
   IF g_rnd_int = 1.
     &1 = 'X'.
@@ -142,7 +142,7 @@ DEFINE rnd_flag.
   ENDIF.
 END-OF-DEFINITION.
 
-DEFINE rnd_num.
+DEFINE _rnd_num.
   g_rnd_int = go_rnd->intinrange( low = &2 high = &3 ).
   &1 = g_rnd_int.
 END-OF-DEFINITION.
